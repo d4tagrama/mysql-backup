@@ -1,5 +1,4 @@
 #!/bin/bash
-CURRENT_DATE=$(/usr/bin/date "+%F-%H-%M-%S")
 CMD_MYSQLDUMP=/usr/bin/mysqldump
 CMD_MYSQL=/usr/bin/mysql
 
@@ -12,6 +11,11 @@ DST_BACKUP=/web/backup
 
 for DB in $($CMD_MYSQL -u$MYSQL_USER -p$MYSQL_PASSWORD -e 'show databases' -s --skip-column-names);
 do
-    $CMD_MYSQLDUMP -u$MYSQL_USER -p$MYSQL_PASSWORD > $DST_BACKUP/$DB.sql >> $LOG_FILE
+    CURRENT_DATE=$(/usr/bin/date "+%F-%H-%M-%S")
+    echo "----- $CURRENT_DATE START BACKUP DB: $DB -----" >> $LOG_FILE
+    echo "$CMD_MYSQLDUMP -u$MYSQL_USER -p$MYSQL_PASSWORD > $DST_BACKUP/$DB.$CURRENT_DATE.sql >> $LOG_FILE"
+    sleep 5
+    CURRENT_DATE=$(/usr/bin/date "+%F-%H-%M-%S")
+    echo "----- $CURRENT_DATE END   BACKUP DB: $DB -----" >> $LOG_FILE
 done
  
