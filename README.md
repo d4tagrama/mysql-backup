@@ -14,6 +14,5 @@ This tool is a basic script that allow DBA generate a automatic backup using `cr
 
 
 ## WARNING
- - Sadly to use this file you need set *user* and *password* in the script this represent a security breach if the users have access to the server.
- - The script no validate if exist a **sql** backup with the same name.
-
+- Unfortunately, to use this file, you need to set a username and password in the script, which represents a security breach if users have access to the server.
+- The script does not validate whether an SQL backup with the same name already exists.
